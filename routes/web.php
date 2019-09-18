@@ -34,13 +34,19 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/department-store', 'User\DepartmentController@store')->name('department.store');
     // Add designation
     Route::post('/designation-store', 'User\DesignationController@store')->name('designation.store');
+
     // CRUD user group / role
-    Route::resource('role', 'User\RoleController');
-    Route::get('role/create', 'User\RoleController@index')->name('role.create');
+    Route::resource('role', 'User\RoleController')->middleware('role:Super Admin');
+    Route::get('role/create', 'User\RoleController@index')->name('role.create')->middleware('role:Super Admin');
     // CRUD user permission
-    Route::resource('permission', 'User\PermissionController');
-    Route::get('permission/create', 'User\PermissionController@index')->name('permission.create');
+    Route::resource('permission', 'User\PermissionController')->middleware('role:Super Admin');
+    Route::get('permission/create', 'User\PermissionController@index')->name('permission.create')->middleware('role:Super Admin');
+
     // Assign role and permission form
     Route::post('set/{user}/role/permission/form', 'User\UserController@setRolePermissionForm')->name('set-permission-form');
-    Route::post('set/role/permission', 'User\UserController@setRolePermission')->name('set-permission');
+    Route::post('set/{user}/role/permission', 'User\UserController@setRolePermission')->name('set-permission');
+
+    // Assign HOD
+    Route::get('/set/hod', 'User\UserController@setHodForm')->name('hod');
+    Route::post('/set/hod', 'User\UserController@setHod')->name('hod');
 });

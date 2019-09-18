@@ -18,7 +18,7 @@
                     <i class="fa fa-shield" aria-hidden="true"></i>
                 </a>
 
-                <a href="{{''}}" class="btn btn-outline-danger btn-sm" title="Manage H.O.D">
+                <a href="{{ route('hod') }}" class="btn btn-outline-danger btn-sm" title="Manage H.O.D">
                     H.O.D
                 </a>
             </div>

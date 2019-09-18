@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
 use App\User;
+use Spatie\Permission\Models\Role;
 use Storage;
 
 class UserController extends Controller
@@ -77,6 +78,8 @@ class UserController extends Controller
             'ext_num' => $input['ext_num']
         ]);
 
+        $user->assignRole('Staff');
+
         return redirect()->back()->with('status', 'User created');
     }
 
@@ -98,15 +101,31 @@ class UserController extends Controller
     }
 
     public function setRolePermissionForm(User $user){
+        $roles = Role::all();
         return view('admin.user.assign-role-perm')
-            ->with('user', $user);
+            ->with('user', $user)
+            ->with('roles', $roles);
     }
 
     public function setRolePermission(Request $request, User $user){
-        // dd($user->id);
 
-        return 'do store';
+        $data['id'] = array_keys($request->role);
+        $user->syncRoles($data);
+        return redirect()
+            ->route('user-list')
+            ->with('status','Role added to user');
+    }
 
+    public function setHodForm(){
+        $departments = Department::all();
+        $users = User::all();
 
+        return view('admin.user.hod-form')
+            ->with('users', $users)
+            ->with('departments', $departments);
+    }
+
+    public function setHod(Request $request){
+        dd($request->all());
     }
 }

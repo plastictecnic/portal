@@ -11,4 +11,8 @@ class Department extends Model
     public function profiles(){
         return $this->hasMany('App\Profile');
     }
+
+    public function hod(){
+        return $this->belongsToMany('App\User');
+    }
 }

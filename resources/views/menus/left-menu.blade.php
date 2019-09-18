@@ -19,11 +19,11 @@
 </div>
 
 {{-- Admin menu --}}
-@role('Super Admin')
+@role('Super Admin|Admin')
 <div class="single category">
     <h3 class="side-title">Administrative</h3>
     <ul class="list-unstyled">
-        <li><a class="{{ (Route::is('user*') || Route::is('role*') || Route::is('permission*')) ? 'active' : '' }}" href="{{ route('user-list') }}" title="User Management">User Management</a></li>
+        <li><a class="{{ (Route::is('user*') || Route::is('role*') || Route::is('permission*') || Route::is('hod*')) ? 'active' : '' }}" href="{{ route('user-list') }}" title="User Management">User Management</a></li>
     </ul>
 </div>
 @endrole
