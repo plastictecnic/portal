@@ -24,6 +24,8 @@
             </div>
         @endif
 
+        <p>{{ $user->name }} <small>roles &amp; permission</small></p>
+
         <div class="row">
             <div class="col">
                 <form action="{{ route('set-permission', $user->id) }}" method="post" class="needs-validation set-font-size">

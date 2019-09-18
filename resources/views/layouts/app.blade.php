@@ -4,6 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {{-- <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png"> --}}
+    {{-- <link rel="manifest" href="/img/favicon/site.webmanifest"> --}}
+    {{-- <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#ff2d20"> --}}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    {{-- <meta name="msapplication-TileColor" content="#ff2d20"> --}}
+    {{-- <meta name="msapplication-config" content="/img/favicon/browserconfig.xml"> --}}
+    <meta name="theme-color" content="#ffffff">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -44,7 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item c-margin-right">
-                            <a class="nav-link btn btn-outline-info btn-sm" href="">
+                            <a class="nav-link btn btn-outline-info btn-sm" href="{{ route('staff-dir') }}">
                                 <i class="fa fa-users"></i> &nbsp; Staff Directory
                             </a>
                         </li>
@@ -99,7 +110,7 @@
                                         <div class="row">
                                             <div class="col-md-6">Navigation</div>
                                             <div class="col-md-6 text-right">
-                                                <a href="{{ route('home') }}" class="btn btn-sm"> H
+                                                <a href="{{ route('home') }}" class="btn btn-default btn-sm"> <i class="fa fa-home" aria-hidden="true"></i>
                                                     {{-- <img style="width:25px;" src="{{ Storage::url(Auth::user()->profile->picture_path) }}" alt=""> --}}
                                                 </a>
                                             </div>

@@ -6,6 +6,9 @@ Route::get('/', function () {
 
 Route::get('test', 'TestController@index')->name('test');
 
+// Open to all
+Route::get('/staff/dir', 'Guest\StaffController@staffDir')->name('staff-dir');
+
 Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->group(function(){
