@@ -126,6 +126,14 @@ class UserController extends Controller
     }
 
     public function setHod(Request $request){
-        dd($request->all());
+        $request->validate([
+            'hod' => 'required|integer',
+            'department' => 'required'
+        ]);
+
+        $user = User::find($request->hod);
+        $user->department()->sync($request->department);
+
+        return redirect()->back()->with('status', 'HOD has been assigned');
     }
 }
