@@ -19,7 +19,7 @@
                 </a>
 
                 <a href="{{ route('hod') }}" class="btn btn-outline-danger btn-sm" title="Manage H.O.D">
-                    H.O.D
+                    <strong>H.O.D</strong>
                 </a>
             </div>
         </div>

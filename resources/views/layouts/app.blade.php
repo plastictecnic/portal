@@ -55,7 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item c-margin-right">
-                            <a class="nav-link btn btn-outline-info btn-sm" href="{{ route('staff-dir') }}">
+                            <a class="nav-link btn btn-outline-info btn-sm {{ (Route::is('staff-dir*')) ? 'active' : '' }}" href="{{ route('staff-dir') }}">
                                 <i class="fa fa-users"></i> &nbsp; Staff Directory
                             </a>
                         </li>

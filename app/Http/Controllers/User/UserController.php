@@ -92,8 +92,8 @@ class UserController extends Controller
 
     // Resetting back user password
     public function changePassword(User $user){
-        //username+emp id
-        $password = $user->username.$user->profile->emp_id;
+        //username+emp-id+current-year
+        $password = $user->username.$user->profile->emp_id.\Carbon\Carbon::now()->year;
         $user->update(['password' => $password]);
         return redirect()
             ->back()

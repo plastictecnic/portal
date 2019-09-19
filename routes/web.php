@@ -49,4 +49,9 @@ Route::middleware(['auth'])->group(function(){
     // Assign HOD
     Route::get('/set/hod', 'User\UserController@setHodForm')->name('hod');
     Route::post('/set/hod', 'User\UserController@setHod')->name('hod');
+
+    // Assets
+    Route::get('/assets-list', 'Asset\AssetController@index')->name('asset-list');
+    Route::get('/assets/create', 'Asset\AssetController@create')->name('asset.create');
+    Route::post('/assets/store', 'Asset\AssetController@store')->name('asset.store');
 });
