@@ -15,6 +15,12 @@ class CreatePrintersTable extends Migration
     {
         Schema::create('printers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('brand', 20)->nullable();
+            $table->string('model', 20)->nullable();
+            $table->string('sn', 20)->nullable();
+            $table->string('connection_type', 30)->nullable();
+            $table->string('printer_type', 20)->nullable();
+            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }
