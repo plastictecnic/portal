@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Software extends Model
 {
     protected $fillable = [
-        'name', 'version', 'licience', 'expiry', 'supplier', 'remark'
+        'asset_id', 'name', 'version', 'licience', 'expiry', 'supplier', 'remark'
     ];
 
     public function asset(){

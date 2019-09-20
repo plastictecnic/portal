@@ -15,6 +15,7 @@ class CreateComputersTable extends Migration
     {
         Schema::create('computers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('asset_id')->unsigned();
             $table->string('type')->nullable();
             $table->string('computer_name')->nullable();
             $table->string('model')->nullable();
@@ -29,6 +30,8 @@ class CreateComputersTable extends Migration
             $table->dateTime('warranty_expiry_at')->nullable();
             $table->string('remark')->nullable();
             $table->timestamps();
+
+            $table->foreign('asset_id')->references('id')->on('assets')->onDelete('cascade');
         });
     }
 

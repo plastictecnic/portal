@@ -15,6 +15,7 @@ class CreateSoftwareTable extends Migration
     {
         Schema::create('software', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('asset_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('version', 10)->nullable();
             $table->string('licience', 20)->nullable();
@@ -22,6 +23,8 @@ class CreateSoftwareTable extends Migration
             $table->string('supplier')->nullable();
             $table->string('remark')->nullable();
             $table->timestamps();
+
+            $table->foreign('asset_id')->references('id')->on('assets')->onDelete('cascade');
         });
     }
 

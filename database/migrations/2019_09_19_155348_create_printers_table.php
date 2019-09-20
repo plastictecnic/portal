@@ -15,6 +15,7 @@ class CreatePrintersTable extends Migration
     {
         Schema::create('printers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('asset_id')->unsigned();
             $table->string('brand', 20)->nullable();
             $table->string('model', 20)->nullable();
             $table->string('sn', 20)->nullable();
@@ -22,6 +23,8 @@ class CreatePrintersTable extends Migration
             $table->string('printer_type', 20)->nullable();
             $table->string('remark')->nullable();
             $table->timestamps();
+
+            $table->foreign('asset_id')->references('id')->on('assets')->onDelete('cascade');
         });
     }
 

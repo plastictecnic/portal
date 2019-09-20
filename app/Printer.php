@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Printer extends Model
 {
     protected $fillable = [
-        'brand', 'model', 'sn', 'connection_type', 'printer_type', 'remark'
+        'asset_id', 'brand', 'model', 'sn', 'connection_type', 'printer_type', 'remark'
     ];
 
     public function asset(){
