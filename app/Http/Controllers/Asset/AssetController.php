@@ -16,6 +16,23 @@ class AssetController extends Controller
     }
 
     public function store(Request $request){
+
+        $request->validate([
+            'type' => ['required'],
+            'computer_name' => ['required'],
+            'brand' => ['required'],
+            'model' => ['required'],
+            'mac_1' => ['required', 'regex:/([A-F0-9]{2}[:|\-]?){6}/'],
+            'mac_2' => ['nullable', 'regex:/([A-F0-9]{2}[:|\-]?){6}/'],
+            'sn' => ['required'],
+            'os_version' => ['required'],
+            'os_key' => ['nullable'],
+            'purchase_at' => ['required', 'date'],
+            'warranty_status' => ['required'],
+            'warranty_expiry' => ['required', 'date'],
+            'remark' => ['required']
+        ]);
+
         dd($request->all());
     }
 }
