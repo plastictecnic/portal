@@ -11,6 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require ('bootstrap-datepicker');
     require( 'datatables.net-dt' )();
     require( 'datatables.net-responsive-dt' )();
     require( 'datatables.net-scroller-dt' )();

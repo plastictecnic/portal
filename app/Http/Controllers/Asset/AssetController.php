@@ -27,12 +27,15 @@ class AssetController extends Controller
             'sn' => ['required'],
             'os_version' => ['required'],
             'os_key' => ['nullable'],
-            'purchase_at' => ['required', 'date'],
+            'purchase_at' => ['required', 'date_format:d-m-Y'],
             'warranty_status' => ['required'],
-            'warranty_expiry' => ['required', 'date'],
-            'remark' => ['required']
+            'warranty_expiry' => ['required', 'date_format:d-m-Y'],
+            'remark' => ['required'],
+            'pdf' => ['required', 'mimes:pdf']
         ]);
 
         dd($request->all());
+
+        
     }
 }

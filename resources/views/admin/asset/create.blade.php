@@ -30,6 +30,7 @@
                     </div>
                 @endif
 
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -47,7 +48,7 @@
 
             <div class="col-md-12">
                 {{-- Form Create User --}}
-                <form action="{{ route('asset.store') }}" method="post" class="needs-validation set-font-size">
+                <form action="{{ route('asset.store') }}" method="post" class="needs-validation set-font-size" enctype="multipart/form-data">
                     @csrf
 
                     <div class="bg-secondary text-white mb-4 pt-1 pb-1 pl-2">Personal Computer</div>
@@ -177,6 +178,23 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-question-circle"></i>
+                                        </span>
+                                    </div>
+                                    <input required id="remark" name="remark" value="{{ old('remark') }}" placeholder="Remark" class="form-control @error('remark') is-invalid @enderror" type="text">
+
+                                    @error('remark')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-md-6">
 
@@ -254,7 +272,7 @@
                                             <i class="fa fa-calendar"></i>
                                         </span>
                                     </div>
-                                    <input required id="purchase_at" name="purchase_at" value="{{ old('purchase_at') }}" placeholder="Purchase At" class="form-control @error('purchase_at') is-invalid @enderror" type="text">
+                                    <input required id="purchase_at" name="purchase_at" autocomplete="off" value="{{ old('purchase_at') }}" placeholder="Purchase At" class="datepicker form-control @error('purchase_at') is-invalid @enderror" type="text">
 
                                     @error('purchase_at')
                                         <span class="invalid-feedback" role="alert">
@@ -295,7 +313,7 @@
                                             <i class="fa fa-calendar-o"></i>
                                         </span>
                                     </div>
-                                    <input required id="warranty_expiry" name="warranty_expiry" value="{{ old('warranty_expiry') }}" placeholder="Warranty Expiry At" class="form-control @error('warranty_expiry') is-invalid @enderror" type="text">
+                                    <input required id="warranty_expiry" autocomplete="off" name="warranty_expiry" value="{{ old('warranty_expiry') }}" placeholder="Warranty Expiry At" class="datepicker form-control @error('warranty_expiry') is-invalid @enderror" type="text">
 
                                     @error('warranty_expiry')
                                         <span class="invalid-feedback" role="alert">
@@ -305,30 +323,28 @@
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fa fa-question-circle"></i>
+                                            <i class="fa fa-file-pdf-o"></i>
                                         </span>
                                     </div>
-                                    <input required id="remark" name="remark" value="{{ old('remark') }}" placeholder="Remark" class="form-control @error('remark') is-invalid @enderror" type="text">
+                                    <div class="custom-file">
+                                        <input required id="pdf" name="pdf" class="custom-file-input @error('pdf') is-invalid @enderror" type="file">
+                                        <label class="custom-file-label" for="customFile">Choose PDF file</label>
+                                    </div>
 
-                                    @error('remark')
+                                    @error('pdf')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
+
                         </div>
                     </div>
-
 
                     <div class="bg-secondary text-white mb-3 pt-1 pb-1 pl-2">Softwre Installed</div>
                     <div class="control-group after-add-more mb-3">
@@ -336,47 +352,17 @@
 
                             <div class="col-md-11">
 
-                                <input style="width:110px" id="name" name="name[]" value="{{ old('name[]') }}" placeholder="Name" class="mr-1 @error('name') is-invalid @enderror" type="text">
-                                @error('name[]')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input style="width:110px" name="name[]" placeholder="Name" class="mr-1" type="text">
 
-                                <input style="width:100px" id="version" name="version[]" value="{{ old('version[]') }}" placeholder="Version" class="mr-1 @error('version') is-invalid @enderror" type="text">
-                                @error('version[]')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input style="width:100px" name="version[]" placeholder="Version" class="mr-1" type="text">
 
-                                <input style="width:130px" id="licience" name="licience[]" value="{{ old('licience[]') }}" placeholder="Licience" class="mr-1 @error('licience') is-invalid @enderror" type="text">
-                                @error('licience[]')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input style="width:130px" name="licience[]" placeholder="Licience" class="mr-1" type="text">
 
-                                <input style="width:100px" id="expiry" name="expiry[]" value="{{ old('expiry[]') }}" placeholder="Expiry At" class="mr-1 @error('expiry') is-invalid @enderror" type="text">
-                                @error('expiry[]')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input style="width:100px" name="expiry[]" autocomplete="off" placeholder="Expiry At" class="mr-1 datepicker" type="text">
 
-                                <input style="width:100px" id="supplier" name="supplier[]" value="{{ old('supplier[]') }}" placeholder="Supplier" class="mr-1 @error('supplier') is-invalid @enderror" type="text">
-                                @error('supplier[]')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input style="width:100px" name="supplier[]" placeholder="Supplier" class="mr-1" type="text">
 
-                                <input id="software_remark" name="software_remark[]" value="{{ old('software_remark[]') }}" placeholder="Remark" class="@error('software_remark') is-invalid @enderror" type="text">
-                                @error('software_remark[]')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input name="software_remark[]" placeholder="Remark" type="text">
 
                             </div>
 
@@ -549,47 +535,17 @@
                             <div class="row no-gutters mt-2">
                                 <div class="col-md-11">
 
-                                    <input style="width:110px" id="name" name="name[]" value="{{ old('name[]') }}" placeholder="Name" class="mr-1 @error('name') is-invalid @enderror" type="text">
-                                    @error('name[]')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input style="width:110px" name="name[]" placeholder="Name" class="mr-1" type="text">
 
-                                    <input style="width:100px" id="version" name="version[]" value="{{ old('version[]') }}" placeholder="Version" class="mr-1 @error('version') is-invalid @enderror" type="text">
-                                    @error('version[]')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input style="width:100px" name="version[]" placeholder="Version" class="mr-1" type="text">
 
-                                    <input style="width:130px" id="licience" name="licience[]" value="{{ old('licience[]') }}" placeholder="Licience" class="mr-1 @error('licience') is-invalid @enderror" type="text">
-                                    @error('licience[]')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input style="width:130px" name="licience[]" placeholder="Licience" class="mr-1" type="text">
 
-                                    <input style="width:100px" id="expiry" name="expiry[]" value="{{ old('expiry[]') }}" placeholder="Expiry At" class="mr-1 @error('expiry') is-invalid @enderror" type="text">
-                                    @error('expiry[]')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input style="width:100px" name="expiry[]" autocomplete="off" placeholder="Expiry At" class="mr-1 datepicker" type="text">
 
-                                    <input style="width:100px" id="supplier" name="supplier[]" value="{{ old('supplier[]') }}" placeholder="Supplier" class="mr-1 @error('supplier') is-invalid @enderror" type="text">
-                                    @error('supplier[]')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input style="width:100px" name="supplier[]" placeholder="Supplier" class="mr-1" type="text">
 
-                                    <input id="software_remark" name="software_remark[]" value="{{ old('software_remark[]') }}" placeholder="Remark" class="@error('software_remark') is-invalid @enderror" type="text">
-                                    @error('software_remark[]')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input name="software_remark[]" placeholder="Remark" type="text">
 
                                 </div>
 
@@ -616,16 +572,25 @@
     $(document).ready(function() {
 
 
-      $(".add-more").click(function(){
-          var html = $(".copy").html();
-          $(".after-add-more").after(html);
-      });
+        $(".add-more").click(function(){
+            var html = $(".copy").html();
+            $(".after-add-more").after(html);
+        });
 
 
-      $("body").on("click",".remove",function(){
-          $(this).parents(".control-group").remove();
-      });
+        $("body").on("click",".remove",function(){
+            $(this).parents(".control-group").remove();
+        });
 
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy'
+        });
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
 
     });
 

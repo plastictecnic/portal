@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap-datepicker": "^1.9.0",
         "datatables.net": "^1.10.19",
         "datatables.net-dt": "^1.10.19",
         "datatables.net-responsive-dt": "^2.2.3",
