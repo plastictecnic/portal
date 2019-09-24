@@ -22,22 +22,30 @@ class AssetController extends Controller
 
     public function store(Request $request){
 
-        // $request->validate([
-        //     'type' => ['required'],
-        //     'computer_name' => ['required'],
-        //     'brand' => ['required'],
-        //     'model' => ['required'],
-        //     'mac_1' => ['required', 'regex:/([A-F0-9]{2}[:|\-]?){6}/'],
-        //     'mac_2' => ['nullable', 'regex:/([A-F0-9]{2}[:|\-]?){6}/'],
-        //     'sn' => ['required'],
-        //     'os_version' => ['required'],
-        //     'os_key' => ['nullable'],
-        //     'purchase_at' => ['required', 'date_format:d/m/Y'],
-        //     'warranty_status' => ['required'],
-        //     'warranty_expiry_at' => ['required', 'date_format:d/m/Y'],
-        //     'remark' => ['required'],
-        //     'pdf' => ['required', 'mimes:pdf', 'max:10000']
-        // ]);
+        $request->validate([
+            'type' => ['required'],
+            'computer_name' => ['required'],
+            'brand' => ['required'],
+            'model' => ['required'],
+            'mac_1' => ['required', 'regex:/([A-F0-9]{2}[:|\-]?){6}/'],
+            'mac_2' => ['nullable', 'regex:/([A-F0-9]{2}[:|\-]?){6}/'],
+            'sn' => ['required'],
+            'os_version' => ['required'],
+            'os_key' => ['nullable'],
+            'purchase_at' => ['required', 'date_format:d/m/Y'],
+            'warranty_status' => ['required'],
+            'warranty_expiry_at' => ['required', 'date_format:d/m/Y'],
+            'remark' => ['required'],
+            'pdf' => ['required', 'mimes:pdf', 'max:10000'],
+            'software.name' => ['required', 'string']
+            // '*.version' => [],
+            // '*.licience' => [],
+            // '*.expiry' => [],
+            // '*.supplier' => [],
+            // '*.remark' => []
+        ]);
+
+        dd($request->software);
 
         if($request->hasFile('pdf')){
 
@@ -82,42 +90,34 @@ class AssetController extends Controller
             // ]);
 
             // Creating Software
-            // $software = Software::create([
 
-            // ]);
+            // foreach($request->name as $name){
+            //     foreach($request->version as $version){
+            //         foreach($request->licience as $licience){
+            //             foreach($request->expiry as $expiry){
+            //                 foreach($request->supplier as $supplier){
+            //                     foreach($request->software_remark as $remark){
 
-            // foreach($request->software as $data){
-            //     dd($data);
+            //                         Software::create(
+            //                             [
+            //                                 'asset_id' => $asset->id,
+            //                                 'name' => $name,
+            //                                 'version' => $version,
+            //                                 'licience' => $licience,
+            //                                 'expiry' => $expiry,
+            //                                 'supplier' => $supplier,
+            //                                 'remark' => $remark
+            //                             ]
+            //                         );
+
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
             // }
 
-
-            $data = [];
-            $c = 1;
-            foreach($request->name as $name){
-                foreach($request->version as $version){
-                    foreach($request->licience as $licience){
-                        foreach($request->expiry as $expiry){
-                            foreach($request->supplier as $supplier){
-                                foreach($request->software_remark as $remark){
-                                    $data = [
-                                        'name' => $name,
-                                        'version' => $version,
-                                        'licience' => $licience,
-                                        'expiry' => $expiry,
-                                        'supplier' => $supplier,
-                                        'remark' => $remark
-                                    ];
-
-                                    
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            dd($data);
-
+            // Creating printer
 
         }else{
             // Return for fail no file of PDF
