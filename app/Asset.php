@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Asset extends Model
 {
     protected $fillable = [
-        'sn', 'remark'
+        'sn', 'remark', 'pdf'
     ];
 
     public function computer(){

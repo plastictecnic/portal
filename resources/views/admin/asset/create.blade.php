@@ -313,9 +313,9 @@
                                             <i class="fa fa-calendar-o"></i>
                                         </span>
                                     </div>
-                                    <input required id="warranty_expiry" autocomplete="off" name="warranty_expiry" value="{{ old('warranty_expiry') }}" placeholder="Warranty Expiry At" class="datepicker form-control @error('warranty_expiry') is-invalid @enderror" type="text">
+                                    <input required id="warranty_expiry_at" autocomplete="off" name="warranty_expiry_at" value="{{ old('warranty_expiry_at') }}" placeholder="Warranty Expiry At" class="datepicker form-control @error('warranty_expiry_at') is-invalid @enderror" type="text">
 
-                                    @error('warranty_expiry')
+                                    @error('warranty_expiry_at')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -352,17 +352,17 @@
 
                             <div class="col-md-11">
 
-                                <input style="width:110px" name="name[]" placeholder="Name" class="mr-1" type="text">
+                                <input style="width:110px" name="name[][]" placeholder="Name" class="mr-1" type="text">
 
-                                <input style="width:100px" name="version[]" placeholder="Version" class="mr-1" type="text">
+                                <input style="width:100px" name="version[][]" placeholder="Version" class="mr-1" type="text">
 
-                                <input style="width:130px" name="licience[]" placeholder="Licience" class="mr-1" type="text">
+                                <input style="width:130px" name="licience[][]" placeholder="Licience" class="mr-1" type="text">
 
-                                <input style="width:100px" name="expiry[]" autocomplete="off" placeholder="Expiry At" class="mr-1 datepicker" type="text">
+                                <input style="width:100px" name="expiry[][]" autocomplete="off" placeholder="Expiry At" class="mr-1 datepicker" type="text">
 
-                                <input style="width:100px" name="supplier[]" placeholder="Supplier" class="mr-1" type="text">
+                                <input style="width:100px" name="supplier[][]" placeholder="Supplier" class="mr-1" type="text">
 
-                                <input name="software_remark[]" placeholder="Remark" type="text">
+                                <input name="software_remark[][]" placeholder="Remark" type="text">
 
                             </div>
 
@@ -535,17 +535,17 @@
                             <div class="row no-gutters mt-2">
                                 <div class="col-md-11">
 
-                                    <input style="width:110px" name="name[]" placeholder="Name" class="mr-1" type="text">
+                                    <input style="width:110px" name="name[][]" placeholder="Name" class="mr-1" type="text">
 
-                                    <input style="width:100px" name="version[]" placeholder="Version" class="mr-1" type="text">
+                                    <input style="width:100px" name="version[][]" placeholder="Version" class="mr-1" type="text">
 
-                                    <input style="width:130px" name="licience[]" placeholder="Licience" class="mr-1" type="text">
+                                    <input style="width:130px" name="licience[][]" placeholder="Licience" class="mr-1" type="text">
 
-                                    <input style="width:100px" name="expiry[]" autocomplete="off" placeholder="Expiry At" class="mr-1 datepicker" type="text">
+                                    <input style="width:100px" name="expiry[][]" autocomplete="off" placeholder="Expiry At" class="mr-1 datepicker" type="text">
 
-                                    <input style="width:100px" name="supplier[]" placeholder="Supplier" class="mr-1" type="text">
+                                    <input style="width:100px" name="supplier[][]" placeholder="Supplier" class="mr-1" type="text">
 
-                                    <input name="software_remark[]" placeholder="Remark" type="text">
+                                    <input name="software_remark[][]" placeholder="Remark" type="text">
 
                                 </div>
 
@@ -583,7 +583,9 @@
         });
 
         $('.datepicker').datepicker({
-            format: 'dd-mm-yyyy'
+            format: 'dd/mm/yyyy',
+            keepOpen: false,
+            debug: true
         });
 
         // Add the following code if you want the name of the file appear on select
