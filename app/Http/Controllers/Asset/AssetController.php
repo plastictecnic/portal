@@ -14,7 +14,8 @@ use Storage;
 class AssetController extends Controller
 {
     public function index(){
-        return view('admin.asset.index');
+        return view('admin.asset.index')
+            ->with('assets', Asset::all());
     }
 
     public function create(){
