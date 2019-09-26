@@ -6,6 +6,7 @@ use App\Asset;
 use App\Computer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Printer;
 use App\Software;
 use Carbon\Carbon;
 use Storage;
@@ -32,92 +33,84 @@ class AssetController extends Controller
             'sn' => ['required'],
             'os_version' => ['required'],
             'os_key' => ['nullable'],
-            'purchase_at' => ['required', 'date_format:d/m/Y'],
+            'purchase_at' => ['required', 'date_format:d-m-Y'],
             'warranty_status' => ['required'],
-            'warranty_expiry_at' => ['required', 'date_format:d/m/Y'],
+            'warranty_expiry_at' => ['required', 'date_format:d-m-Y'],
             'remark' => ['required'],
-            'pdf' => ['required', 'mimes:pdf', 'max:10000'],
-            'software.name' => ['required', 'string']
-            // '*.version' => [],
-            // '*.licience' => [],
-            // '*.expiry' => [],
-            // '*.supplier' => [],
-            // '*.remark' => []
+            'pdf' => ['required', 'mimes:pdf', 'max:10000']
         ]);
-
-        dd($request->software);
 
         if($request->hasFile('pdf')){
 
             // Creating new sn for asset
-            // $assetNo = \App\Asset::whereDate('created_at', Carbon::today())->count() + 1;
-            // $sn = 'A' . Carbon::now()->dayOfYear() . str_pad($assetNo, 3, 0, STR_PAD_LEFT);
+            $assetNo = \App\Asset::whereDate('created_at', Carbon::today())->count() + 1;
+            $sn = 'A' . Carbon::now()->dayOfYear() . str_pad($assetNo, 2, 0, STR_PAD_LEFT);
 
             // Managing & uploading proof file for asset
-            // $file = $request->file('pdf');
-            // $extension = $file->getClientOriginalExtension();
-            // $newname = $sn .'.'. $extension;
-            // $path = Storage::putFileAs('public/assets/pdf', $request->file('pdf'), $newname);
+            $file = $request->file('pdf');
+            $extension = $file->getClientOriginalExtension();
+            $newname = $sn .'.'. $extension;
+            $path = Storage::putFileAs('public/assets/pdf', $request->file('pdf'), $newname);
 
-            // Remove public path before store to db
-            // if (strpos($path, 'public/') !== false) {
-            //     $path = substr($path, 7);
-            // }
+            // // Remove public path before store to db
+            if (strpos($path, 'public/') !== false) {
+                $path = substr($path, 7);
+            }
 
             // Creating asset
-            // $asset = Asset::create([
-            //     'sn' => $sn,
-            //     'remark' => $request->remark,
-            //     'pdf' => $path
-            // ]);
+            $asset = Asset::create([
+                'sn' => $sn,
+                'remark' => $request->remark,
+                'pdf' => $path
+            ]);
 
             // Creating computer
-            // Computer::create([
-            //     'asset_id' => $asset->id,
-            //     'type' => $request->type,
-            //     'computer_name' => $request->computer_name,
-            //     'model' => $request->model,
-            //     'brand' => $request->brand,
-            //     'sn' => $request->sn,
-            //     'mac_1' => $request->mac_1,
-            //     'mac_2' => $request->mac_2,
-            //     'os_version' => $request->os_version,
-            //     'os_key' => $request->os_key,
-            //     'purchase_at' => $request->purchase_at,
-            //     'warranty_status' => $request->warranty_status,
-            //     'warranty_expiry_at' => $request->warranty_expiry_at,
-            //     'remark' => $request->remark
-            // ]);
+            Computer::create([
+                'asset_id' => $asset->id,
+                'type' => $request->type,
+                'computer_name' => $request->computer_name,
+                'model' => $request->model,
+                'brand' => $request->brand,
+                'sn' => $request->sn,
+                'mac_1' => $request->mac_1,
+                'mac_2' => $request->mac_2,
+                'os_version' => $request->os_version,
+                'os_key' => $request->os_key,
+                'purchase_at' => $request->purchase_at,
+                'warranty_status' => $request->warranty_status,
+                'warranty_expiry_at' => $request->warranty_expiry_at,
+                'remark' => $request->remark
+            ]);
 
             // Creating Software
-
-            // foreach($request->name as $name){
-            //     foreach($request->version as $version){
-            //         foreach($request->licience as $licience){
-            //             foreach($request->expiry as $expiry){
-            //                 foreach($request->supplier as $supplier){
-            //                     foreach($request->software_remark as $remark){
-
-            //                         Software::create(
-            //                             [
-            //                                 'asset_id' => $asset->id,
-            //                                 'name' => $name,
-            //                                 'version' => $version,
-            //                                 'licience' => $licience,
-            //                                 'expiry' => $expiry,
-            //                                 'supplier' => $supplier,
-            //                                 'remark' => $remark
-            //                             ]
-            //                         );
-
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
+            // Using name param as ref of array count as name and version are reuired
+            for($s = 0; $s < count($request->name); $s++){
+                Software::create([
+                    'asset_id' => $asset->id,
+                    'name' => $request->name[$s],
+                    'version' => $request->version[$s],
+                    'licience' => $request->licience[$s],
+                    'expiry' => $request->expiry[$s],
+                    'supplier' => $request->supplier[$s],
+                    'remark' => $request->software_remark[$s]
+                ]);
+            }
 
             // Creating printer
+            if($request->printer){
+                Printer::create([
+                    // 'asset_id', 'brand', 'model', 'sn', 'connection_type', 'printer_type', 'remark'
+                    'asset_id' => $asset->id,
+                    'brand' => $request->printer_brand,
+                    'model' => $request->printer_model,
+                    'sn' => $request->printer_sn,
+                    'connection_type' => $request->connection_type,
+                    'printer_type' => $request->printer_type,
+                    'remark' => $request->printer_remark
+                ]);
+            }
+
+            return redirect()->back()->with('status', 'Asset created');
 
         }else{
             // Return for fail no file of PDF

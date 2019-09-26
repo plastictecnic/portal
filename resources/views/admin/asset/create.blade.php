@@ -346,20 +346,17 @@
                         </div>
                     </div>
 
-                    <div class="bg-secondary text-white mb-3 pt-1 pb-1 pl-2">Softwre Installed</div>
+                    <div class="bg-secondary text-white mb-3 pt-1 pb-1 pl-2">
+                        Software Installed
+                    </div>
                     <div class="control-group after-add-more mb-3">
                         <div class="row no-gutters mb-3">
 
                             <div class="col-md-11">
 
-                                <input style="width:110px" name="software[name][]" placeholder="Name" class="mr-1 @error('software.name') is-invalid @enderror" type="text">
-                                @error('software.name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                @enderror
+                                <input required style="width:110px" name="name[]" placeholder="Name" class="mr-1" type="text">
 
-                                <input style="width:100px" name="software[version][]" placeholder="Version" class="mr-1" type="text">
+                                <input required style="width:100px" name="version[]" placeholder="Version" class="mr-1" type="text">
 
                                 <input style="width:130px" name="licience[]" placeholder="Licience" class="mr-1" type="text">
 
@@ -377,7 +374,23 @@
                         </div>
                     </div>
 
-                    <div class="bg-secondary text-white mt-3 mb-4 pt-1 pb-1 pl-2">Personal Printer Given</div>
+                    <div class="bg-secondary text-white mt-3 mb-4 pt-1 pb-1 pl-2">
+                        <div class="row">
+                            <div class="col-md-10">
+                                Printer Given
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <div class="input-group">
+                                    <div class="custom-control custom-checkbox">
+
+                                        <input type="checkbox" id="printer" class="custom-control-input" name="printer">
+                                        <label class="custom-control-label" for="printer">Enable</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mt-4">
                         <div class="col-md-6">
 
@@ -390,7 +403,7 @@
                                         </span>
                                     </div>
 
-                                    <select name="printer_brand" class="custom-select @error('printer_brand') is-invalid @enderror">
+                                    <select name="printer_brand" class="p-disabled custom-select @error('printer_brand') is-invalid @enderror">
                                         <option value="">Brand</option>
                                         <option value="Brother">Brother</option>
                                         <option value="Canon">Canon</option>
@@ -423,7 +436,7 @@
                                             <i class="fa fa-clone"></i>
                                         </span>
                                     </div>
-                                    <input id="printer_model" name="printer_model" value="{{ old('printer_model') }}" placeholder="Printer Model" class="form-control @error('printer_model') is-invalid @enderror" type="text">
+                                    <input id="printer_model" name="printer_model" value="{{ old('printer_model') }}" placeholder="Printer Model" class="p-disabled form-control @error('printer_model') is-invalid @enderror" type="text">
 
                                     @error('printer_model')
                                         <span class="invalid-feedback" role="alert">
@@ -440,7 +453,7 @@
                                             <i class="fa fa-barcode"></i>
                                         </span>
                                     </div>
-                                    <input id="printer_sn" name="printer_sn" value="{{ old('printer_sn') }}" placeholder="Serial Number" class="form-control @error('printer_sn') is-invalid @enderror" type="text">
+                                    <input id="printer_sn" name="printer_sn" value="{{ old('printer_sn') }}" placeholder="Serial Number" class="p-disabled form-control @error('printer_sn') is-invalid @enderror" type="text">
 
                                     @error('printer_sn')
                                         <span class="invalid-feedback" role="alert">
@@ -461,7 +474,7 @@
                                         </span>
                                     </div>
 
-                                    <select name="connection_type" class="custom-select @error('connection_type') is-invalid @enderror">
+                                    <select name="connection_type" class="p-disabled custom-select @error('connection_type') is-invalid @enderror">
                                         <option value="">Connection type</option>
                                         <option value="USB">USB</option>
                                         <option value="USB+WiFi">USB+WiFi</option>
@@ -488,16 +501,16 @@
                                         </span>
                                     </div>
 
-                                    <select name="printer_type" class="custom-select @error('printer_type') is-invalid @enderror">
+                                    <select name="printer_type" class="p-disabled custom-select @error('printer_type') is-invalid @enderror">
                                         <option value="">Printer type</option>
-                                        <option value="Laser Printer">Laser Printer</option>
-                                        <option value="Solid Ink Printer">Solid Ink Printer</option>
-                                        <option value="LED Printer">LED Printer</option>
-                                        <option value="Business Inkjet Printer">Business Inkjet Printer</option>
-                                        <option value="Home Inkjet Printer">Home Inkjet Printer</option>
-                                        <option value="Multifunctional Printer">Multifunctional Printer (COPY/SCAN Machine)</option>
-                                        <option value="Dot Matrix Printer">Dot Matrix Printer</option>
-                                        <option value="3D Printer">3D Printer</option>
+                                        <option value="Laser">Laser Printer</option>
+                                        <option value="Solid Ink">Solid Ink Printer</option>
+                                        <option value="LED">LED Printer</option>
+                                        <option value="Business Inkjet">Business Inkjet Printer</option>
+                                        <option value="Home Inkjet">Home Inkjet Printer</option>
+                                        <option value="Multifunctional">Multifunctional Printer (COPY/SCAN Machine)</option>
+                                        <option value="Dot Matrix">Dot Matrix Printer</option>
+                                        <option value="3D">3D Printer</option>
                                     </select>
 
                                     @error('printer_type')
@@ -515,7 +528,7 @@
                                             <i class="fa fa-exclamation-triangle"></i>
                                         </span>
                                     </div>
-                                    <input id="printer_remark" name="printer_remark" value="{{ old('printer_remark') }}" placeholder="Remark" class="form-control @error('printer_remark') is-invalid @enderror" type="text">
+                                    <input id="printer_remark" name="printer_remark" value="{{ old('printer_remark') }}" placeholder="Remark" class="p-disabled form-control @error('printer_remark') is-invalid @enderror" type="text">
 
                                     @error('printer_remark')
                                         <span class="invalid-feedback" role="alert">
@@ -540,9 +553,9 @@
                             <div class="row no-gutters mt-2">
                                 <div class="col-md-11">
 
-                                    <input style="width:110px" name="name[]" placeholder="Name" class="mr-1" type="text">
+                                    <input required style="width:110px" name="name[]" placeholder="Name" class="mr-1" type="text">
 
-                                    <input style="width:100px" name="version[]" placeholder="Version" class="mr-1" type="text">
+                                    <input required style="width:100px" name="version[]" placeholder="Version" class="mr-1" type="text">
 
                                     <input style="width:130px" name="licience[]" placeholder="Licience" class="mr-1" type="text">
 
@@ -580,7 +593,7 @@
         $(".add-more").click(function(){
             var html = $(".copy").html();
             $(".after-add-more").after(html);
-            $('.datepicker-i').find('.datepicker').datepicker({format: 'dd/mm/yyyy'});
+            $('.datepicker-i').find('.datepicker').datepicker({format: 'dd-mm-yyyy'});
         });
 
 
@@ -589,15 +602,27 @@
         });
 
         $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy',
-            keepOpen: false,
-            debug: true
+            format: 'dd-mm-yyyy',
+            keepOpen: false
         });
 
         // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+        // Enable disable printer adding
+        $(".p-disabled").prop("disabled", true);
+        $("#printer").on("change", function () {
+            if($(this).prop("checked") == true){
+                // $('form input[type="submit"]').prop("disabled", false);
+                $(".p-disabled").prop("disabled", false);
+            }
+            else if($(this).prop("checked") == false){
+                // $('form input[type="submit"]').prop("disabled", true);
+                $(".p-disabled").prop("disabled", true);
+            }
         });
 
     });
