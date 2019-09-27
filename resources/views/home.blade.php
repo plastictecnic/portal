@@ -15,8 +15,7 @@
                     @endif
 
                     {{-- ETA size 750x300 --}}
-                    <img class = "img-responsive" width="100%" src="https://via.placeholder.com/750x300/f24e35/FFFFFF?text=plastictecnic.com" alt="test">
-
+                    <img class = "img-responsive" width="100%" src="{{ Storage::url('slider/banner.jpg') }}" alt="test">
 
 
                 </div>
