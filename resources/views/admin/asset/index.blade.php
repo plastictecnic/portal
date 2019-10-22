@@ -20,6 +20,12 @@
             </div>
         @endif
 
+        @if (session('alert'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('alert') }}
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-12">
 
@@ -38,32 +44,36 @@
                         @foreach ($assets as $asset)
                             <tr>
                                 <td>{{ $asset->sn }}</td>
-                                <td>{{ '$asset->sn' }}</td>
+                                <td>
+                                    @foreach ($asset->user as $user)
+                                        {{ $user->name }}
+                                    @endforeach
+                                </td>
                                 <td>{{ $asset->remark }}</td>
                                 <td>{{ $asset->updated_at->format('d-m-Y') }}</td>
                                 <td class="">
-                                    <a href="#" class="btn btn-outline-default btn-sm" title="Details">
+                                    <a href="#" class="btn btn-outline-default btn-sm" title="Download PDF">
                                         <i class="fa fa-download" aria-hidden="true"></i>
                                     </a>
 
-                                    <a href="#" class="btn btn-outline-secondary btn-sm" title="Details">
+                                    <a target="_blank" href="{{ Storage::url($asset->pdf) }}" class="btn btn-outline-secondary btn-sm" title="Download Bellarc">
                                         <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                     </a>
-                                    
-                                    <a href="{{ '' }}" class="btn btn-outline-info btn-sm" title="Edit User">
+
+                                    <a href="{{ '' }}" class="btn btn-outline-info btn-sm" title="Edit Assets">
                                         <i class="fa fa-edit" aria-hidden="true"></i>
                                     </a>
 
-                                    <form class="d-inline" action="{{ '' }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-outline-warning btn-sm"><i class="fa fa-user" aria-hidden="true"></i></button>
-                                    </form>
+                                    <a href="{{ route('asset.assign.user', $asset->id) }}" class="btn btn-outline-warning btn-sm" title="Assign User">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </a>
 
                                     <a href="#" class="btn btn-outline-primary btn-sm" title="Details">
+                                        {{-- view all data --}}
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
 
-                                    <form class="d-inline" action="{{ '' }}" method="POST">
+                                    <form class="d-inline" action="{{ route('asset.delete', $asset->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>

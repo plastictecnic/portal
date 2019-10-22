@@ -54,4 +54,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/assets-list', 'Asset\AssetController@index')->name('asset-list');
     Route::get('/assets/create', 'Asset\AssetController@create')->name('asset.create');
     Route::post('/assets/store', 'Asset\AssetController@store')->name('asset.store');
+
+    Route::get('/assets/{asset}/assign/user', 'Asset\AssetController@assignUser')->name('asset.assign.user');
+    Route::post('/assets/{asset}/assign-user', 'Asset\AssetController@assigningUser')->name('asset.assigning.user');
+    Route::delete('/assets/{asset}/delete', 'Asset\AssetController@destroy')->name('asset.delete');
 });

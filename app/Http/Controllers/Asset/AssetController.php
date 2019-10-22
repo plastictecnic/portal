@@ -118,4 +118,21 @@ class AssetController extends Controller
             return redirect()->back()->with('alert', 'Please provide PDF proof of assets');
         }
     }
+
+    public function assignUSer($id){
+        return view('admin.asset.assign-user')->with('asset', $id);
+    }
+
+    public function assigningUSer(Request $request, Asset $asset){
+        $asset->user()->sync($request->name);
+        return redirect()->route('asset-list')->with('status', 'User assigned');
+    }
+
+    public function destroy(Asset $asset)
+    {
+        $asset->delete();
+        return redirect()
+            ->route('asset-list')
+            ->with('status','Asset Removed');
+    }
 }

@@ -21,4 +21,8 @@ class Asset extends Model
     public function softwares(){
         return $this->hasMany('App\Software');
     }
+
+    public function user(){
+        return $this->belongsToMany('App\User');
+    }
 }
