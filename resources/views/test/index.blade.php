@@ -1,5 +1,5 @@
-@extends('layouts.app')
+@extends('pdf.layout.layout')
 
 @section('content')
-    {{ strtoupper('a0424') }}
+    
 @endsection
