@@ -84,10 +84,6 @@
                             <a href="#" class="btn btn-outline-warning btn-sm" title="Assign Group">
                                 <i class="fa fa-users" aria-hidden="true"></i>
                             </a>
-
-                            <a href="#" class="btn btn-outline-primary btn-sm" title="Details">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </a>
                         </td>
                     </tr>
                 @endforeach

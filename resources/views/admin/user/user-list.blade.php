@@ -69,8 +69,8 @@
                                 <button type="submit" class="btn btn-outline-warning btn-sm"><i class="fa fa-shield" aria-hidden="true"></i></button>
                             </form>
 
-                            <a href="#" class="btn btn-outline-primary btn-sm" title="Details">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            <a href="#" class="btn btn-outline-secondary btn-sm" title="PDF Details">
+                                <i class="fa fa-cloud-download" aria-hidden="true"></i>
                             </a>
 
                             <form class="d-inline" action="{{ route('change.password', $user->id) }}" method="POST">

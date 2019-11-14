@@ -68,11 +68,6 @@
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                     </a>
 
-                                    <a href="#" class="btn btn-outline-primary btn-sm" title="Details">
-                                        {{-- view all data --}}
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
-
                                     <form class="d-inline" action="{{ route('asset.delete', $asset->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
