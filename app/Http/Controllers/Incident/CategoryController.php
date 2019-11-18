@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Incident;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Incidentcategory;
 
 class CategoryController extends Controller
 {
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.incident.category.create')->with('inc_cats', Incidentcategory::all());
     }
 
     /**
@@ -35,7 +36,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'incident_group_name' => 'required',
+            'inc_cat_group_member' => 'required'
+        ]);
+
+        Incidentcategory::create($request->all());
+
+        return redirect()->back()->with('status', 'Incident Category Created')->with('inc_cats', Incidentcategory::all());
     }
 
     /**

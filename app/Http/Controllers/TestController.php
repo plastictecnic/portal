@@ -12,4 +12,8 @@ class TestController extends Controller
         // $pdf->setPaper('a4', 'landscape');
         return $pdf->download('invoice.pdf');
     }
+
+    public function disabled(){
+        return view('test.disabled');
+    }
 }

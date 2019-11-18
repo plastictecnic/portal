@@ -45,12 +45,12 @@
 
                     <ul class="navbar-nav">
                         <li class="nav-item c-margin-right">
-                            <a class="nav-link btn btn-outline-info btn-sm" href="">
+                            <a class="nav-link btn btn-outline-info btn-sm" href="{{ route('disabled') }}">
                                 <i class="fa fa-calendar" aria-hidden="true"></i> &nbsp; Holiday {{ \Carbon\Carbon::now()->year }}
                             </a>
                         </li>
                         <li class="nav-item c-margin-right">
-                            <a class="nav-link btn btn-outline-info btn-sm" href="">
+                            <a class="nav-link btn btn-outline-info btn-sm" href="{{ route('disabled') }}">
                                 <i class="fa fa-address-book"></i> &nbsp; Business Directory
                             </a>
                         </li>
@@ -60,7 +60,7 @@
                             </a>
                         </li>
                         <li class="nav-item c-margin-right">
-                            <a class="nav-link btn btn-outline-info btn-sm" href="">
+                            <a class="nav-link btn btn-outline-info btn-sm" href="{{ route('disabled') }}">
                                 <i class="fa fa-bolt"></i> &nbsp; Tech Highlight
                             </a>
                         </li>

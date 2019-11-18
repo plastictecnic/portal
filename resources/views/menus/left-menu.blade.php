@@ -11,11 +11,11 @@
 <div class="single category">
     <h3 class="side-title">It Service Desk</h3>
     <ul class="list-unstyled">
-        <li><a href="" title="">IT Organization Chart</a></li>
-        <li><a href="" title="">Downloadable Form</a></li>
-        <li><a href="" title="">Account Access Request</a></li>
-        <li><a href="" title="">Asset Request</a></li>
-        <li><a href="" title="">FAQ</a></li>
+        <li><a href="{{ route('disabled') }}" title="">IT Organization Chart</a></li>
+        <li><a href="{{ route('disabled') }}" title="">Downloadable Form</a></li>
+        <li><a href="{{ route('disabled') }}" title="">Account Access Request</a></li>
+        <li><a href="{{ route('disabled') }}" title="">Asset Request</a></li>
+        <li><a href="{{ route('disabled') }}" title="">FAQ</a></li>
     </ul>
 </div>
 
