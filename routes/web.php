@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.custom.login');
 });
 
 Route::get('test', 'TestController@index')->name('test');
@@ -58,4 +58,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/assets/{asset}/assign/user', 'Asset\AssetController@assignUser')->name('asset.assign.user');
     Route::post('/assets/{asset}/assign-user', 'Asset\AssetController@assigningUser')->name('asset.assigning.user');
     Route::delete('/assets/{asset}/delete', 'Asset\AssetController@destroy')->name('asset.delete');
+
+    // Incident Management
+    // Incident Main Page
+    Route::get('incident', 'Incident\IncidentController@index')->name('incident');
+    // Category
+    Route::resource('inc-cat', 'Incident\CategoryController');
 });

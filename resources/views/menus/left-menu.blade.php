@@ -5,7 +5,6 @@
         <li><a href="" title="">My Profile</a></li>
         <li><a href="" title="">Submit Ticket</a></li>
         <li><a href="" title="">My It Assets</a></li>
-        <li><a href="" title="">Arhived Files</a></li>
     </ul>
 </div>
 
@@ -16,7 +15,7 @@
         <li><a href="" title="">Downloadable Form</a></li>
         <li><a href="" title="">Account Access Request</a></li>
         <li><a href="" title="">Asset Request</a></li>
-        <li><a href="" title="">FAQt</a></li>
+        <li><a href="" title="">FAQ</a></li>
     </ul>
 </div>
 
@@ -26,10 +25,8 @@
     <h3 class="side-title">Administrative</h3>
     <ul class="list-unstyled">
         <li><a class="{{ (Route::is('user*') || Route::is('role*') || Route::is('permission*') || Route::is('hod*')) ? 'active' : '' }}" href="{{ route('user-list') }}" title="User Management">User Management</a></li>
-        <li><a class="{{ (Route::is('asset*')) ? 'active' : '' }}" href="{{ route('asset-list') }}" title="IT Assets">Man IT Assets</a></li>
-        <li><a href="" title="">Man Account Access Request</a></li>
-        <li><a href="" title="">Man Incident</a></li>
-        <li><a href="" title="">Man IT Requisition</a></li>
+        <li><a class="{{ (Route::is('asset*')) ? 'active' : '' }}" href="{{ route('asset-list') }}" title="IT Assets">Manage IT Assets</a></li>
+        <li><a class="{{ (Route::is('inc*')) ? 'active' : '' }}" href="{{ route('incident') }}" title="">Manage IT Incident</a></li>
     </ul>
 </div>
 @endrole

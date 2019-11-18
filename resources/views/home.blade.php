@@ -17,7 +17,6 @@
                     {{-- ETA size 750x300 --}}
                     <img class = "img-responsive" width="100%" src="{{ Storage::url('slider/banner.jpg') }}" alt="test">
 
-
                 </div>
             </div>
         </div>
